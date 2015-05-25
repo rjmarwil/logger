@@ -1,0 +1,11 @@
+machine:
+  node:
+    version: 0.10.38
+
+dependencies:
+  pre:
+    - npm install -g codeclimate-test-reporter
+
+test:
+  post:
+    - codeclimate < coverage/lcov.info

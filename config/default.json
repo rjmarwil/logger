@@ -1,0 +1,12 @@
+{
+  "amqp": {
+    "name": "jobs.track"
+  },
+  "log": {
+    "levels": {
+      "console": "info",
+      "file": "verbose",
+      "sentry": "silent"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "log": {
+    "levels": {
+      "console": "silent",
+      "file": "silent",
+      "sentry": "silent"
+    }
+  }
+}
