@@ -1,18 +1,15 @@
-var winston = require('winston')
+var Loggly = require('winston-loggly').Loggly
   , config = require('config')
   , levels = config.get('log').levels
-  , Loggly = require('winston-loggly').Loggly;
+  , env = process.env.NODE_ENV || 'development'
+  , appName = process.env.npm_package_name || 'default';
 
 module.exports = new (Loggly)(
   { subdomain: 'pagerinc'
-  , auth:
-    { username: 'your-username'
-    , password: 'your-password'
-    }
-  , level: levels.loggly || 'error'
+  , level: levels.loggly || 'debug'
   , json: true
-  , inputName: 'The name of the input this instance should log to'
-  , inputToken: 'The input token of the input this instance should log to'
-  , tags: []
+  , inputName: appName + '@' + env
+  , inputToken: process.env.LOGGLY_TOKEN || 'Don\'t forget the token'
+  , tags: [appName, env]
   }
 );

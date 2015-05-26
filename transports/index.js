@@ -2,14 +2,14 @@ var env = process.env.NODE_ENV || 'development'
   , consoleTransport = require('./console')
   , localFileTransport = require('./localFile')
   , sentryTransport = require('./sentry')
-  , logglyTransport = require('./loggly')
-  , s3Transport = require('./s3');
+  // , s3Transport = require('./s3');
+  , logglyTransport = require('./loggly');
 
 var transports = {
   development: [consoleTransport, localFileTransport],
   test: [],
-  staging: [consoleTransport, s3Transport, sentryTransport],
-  production: [consoleTransport, s3Transport, sentryTransport]
+  staging: [consoleTransport, logglyTransport, sentryTransport],
+  production: [consoleTransport, logglyTransport, sentryTransport]
 };
 
 module.exports = transports[env];

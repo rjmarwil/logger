@@ -6,7 +6,8 @@
     "levels": {
       "console": "info",
       "file": "verbose",
-      "sentry": "silent"
+      "sentry": "silent",
+      "loggly": "debug"
     }
   }
 }

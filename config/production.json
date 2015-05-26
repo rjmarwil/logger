@@ -1,7 +1,8 @@
 {
   "log": {
     "levels": {
-      "sentry": "error"
+      "sentry": "error",
+      "loggly": "error"
     }
   }
 }

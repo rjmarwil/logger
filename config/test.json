@@ -3,7 +3,8 @@
     "levels": {
       "console": "silent",
       "file": "silent",
-      "sentry": "silent"
+      "sentry": "silent",
+      "loggly": "silent"
     }
   }
 }

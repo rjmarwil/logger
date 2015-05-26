@@ -4,7 +4,8 @@
   },
   "log": {
     "levels": {
-      "sentry": "error"
+      "sentry": "error",
+      "loggly": "info"
     }
   }
 }
