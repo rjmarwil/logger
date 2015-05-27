@@ -1,5 +1,5 @@
 {
-  "name": "logger",
+  "name": "@pager/logger",
   "version": "0.0.1",
   "description": "Logging library",
   "keywords": [
@@ -8,9 +8,8 @@
   "author": "David Roncancio <davidroncancio@pager.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/pagerinc/logger.git"
+    "url": "https://github.com/pagerinc/logger"
   },
-  "private": true,
   "scripts": {
     "test": "make test-cov"
   },
