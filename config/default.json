@@ -1,7 +1,4 @@
 {
-  "amqp": {
-    "name": "jobs.track"
-  },
   "log": {
     "levels": {
       "console": "info",

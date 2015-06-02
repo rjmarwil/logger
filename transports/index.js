@@ -6,10 +6,27 @@ var env = process.env.NODE_ENV || 'development'
   , logglyTransport = require('./loggly');
 
 var transports = {
-  development: [consoleTransport, localFileTransport],
-  test: [],
-  staging: [consoleTransport, logglyTransport, sentryTransport],
-  production: [consoleTransport, logglyTransport, sentryTransport]
+  development: [
+    consoleTransport
+    , localFileTransport
+  ]
+  , test: []
+  , staging: [
+    consoleTransport
+    , logglyTransport
+    , sentryTransport
+  ]
+  , production: [
+    consoleTransport
+    , logglyTransport
+    , sentryTransport
+  ]
 };
 
-module.exports = transports[env];
+module.exports = {
+  transports: transports[env]
+  , exceptionHandlers: [
+    sentryTransport
+  ]
+};
+
