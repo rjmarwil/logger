@@ -1,8 +1,7 @@
 
 NODE_MODULES=node_modules/.bin
 
-JSHINT=$(NODE_MODULES)/jshint
-JSCS=$(NODE_MODULES)/jscs
+STANDARD=$(NODE_MODULES)/standard
 
 ISTANBUL=$(NODE_MODULES)/istanbul
 COVERAGE_REPORT=coverage/lcov.info
@@ -11,11 +10,8 @@ COVERAGE_PCT=90
 MOCHA=$(NODE_MODULES)/_mocha
 TESTS=$(test)
 
-check-style:
-	@$(JSCS) . --reporter=node_modules/jscs-stylish/jscs-stylish.js
-
-lint: check-style
-	@$(JSHINT) . --reporter node_modules/jshint-stylish/stylish.js
+lint:
+	@$(STANDARD)
 
 test: lint
 	@$(MOCHA) $(TESTS)

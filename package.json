@@ -23,11 +23,8 @@
   "devDependencies": {
     "chai": "^2.3.0",
     "istanbul": "^0.3.14",
-    "jscs": "^1.13.1",
-    "jscs-stylish": "^0.3.1",
-    "jshint": "^2.7.0",
-    "jshint-stylish": "^1.0.2",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "standard": "^4.0.1"
   },
   "main": "index"
 }
