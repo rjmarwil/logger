@@ -55,6 +55,7 @@ The Sentry/Raven transport requires the following ENV var to be set:
 ### Loggly
 
 - `LOGGLY_TOKEN`
+- `LOGGLY_DOMAIN`
 
 ### S3
 

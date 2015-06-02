@@ -5,6 +5,7 @@
       "file": "verbose",
       "sentry": "silent",
       "loggly": "debug"
-    }
+    },
+    "domain": "pager"
   }
 }
