@@ -1,4 +1,5 @@
 # logger
+[![Circle CI](https://circleci.com/gh/pagerinc/logger.svg?style=svg&circle-token=5d187ad739918f3029e28534e5bf046ece8120ae)](https://circleci.com/gh/pagerinc/logger) [![Code Climate](https://codeclimate.com/repos/556dcfce6956802d790056d6/badges/ab64b16efb1ac1481125/gpa.svg)](https://codeclimate.com/repos/556dcfce6956802d790056d6/feed) [![Test Coverage](https://codeclimate.com/repos/556dcfce6956802d790056d6/badges/ab64b16efb1ac1481125/coverage.svg)](https://codeclimate.com/repos/556dcfce6956802d790056d6/coverage) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 Logging library for new (and old) projects
 
