@@ -4,10 +4,10 @@ Logging library for new (and old) projects
 
 ## Usage
 
-By default un Development enviroment it has console and file transport, for production and stagging localfile 
-is replaced by loggly transport, in those enviroments dont forget to set the LOGGLY_TOKEN enviroment variable,
-those enviroments also have a sentry transport for exceptions, dont forget to add the SENTRY_DSN enviroment variable
+Each `NODE_ENV` defaults to a `console` and `file` transports. Under `production` and `stagging`, `localfile` 
+is replaced by `loggly` transport. See [configuration](#Configuration) for the extra setup under those enviroments.
 
+## Installation
 
 1. Upgrade npm
 
@@ -41,9 +41,31 @@ var logger = require('logger');
 logger.log('info', 'Hola Mundo', {hola: 'mundo'});
 ```
 
-## Add custom Transport
+## Configuration
 
-To add a custom transport 
+Some of the bundled transports require some additional configuration on your app.
+
+### Sentry
+
+The Sentry/Raven transport requires the following ENV var to be set:
+
+- `SENTRY_DSN`
+
+### Loggly
+
+- `LOGGLY_TOKEN`
+
+### S3
+
+The S3 transport requires the following ENV vars to be set on the host:
+
+- `S3_LOGS_BUCKET` - name of your bucket
+- `S3_KEY`
+- `S3_SECRET`
+
+## Custom transports
+
+To add a custom transport:
 
 ```javascript
 // Require the transport
@@ -54,8 +76,4 @@ var logger = require('logger');
 
 // Add and setupt the transport
 logger.add(localFileTransport, { name: 'localFile', filename: 'test.log' });
-
-
 ```
-
-

@@ -1,7 +1,4 @@
 {
-  "amqp": {
-    "name": "jobs.track.staging"
-  },
   "log": {
     "levels": {
       "sentry": "error",
