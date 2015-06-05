@@ -1,10 +1,8 @@
 {
-  "log": {
-    "levels": {
-      "console": "silent",
-      "file": "silent",
-      "sentry": "silent",
-      "loggly": "silent"
-    }
+  "levels": {
+    "console": "silent",
+    "file": "silent",
+    "sentry": "silent",
+    "loggly": "silent"
   }
 }
