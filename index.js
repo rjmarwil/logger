@@ -8,8 +8,7 @@ var config = require('config')
 
 var myDefaultConfigs = require('./config/' + (process.env.NODE_ENV || 'default') + '.json')
 
-module.exports = function (configs) {
-  config.util.extendDeep(myDefaultConfigs, configs)
+module.exports = (function () {
   config.util.setModuleDefaults('log', myDefaultConfigs)
   return require('./lib/logger')
-}
+})()
