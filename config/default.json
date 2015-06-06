@@ -1,11 +1,8 @@
 {
-  "log": {
-    "levels": {
-      "console": "info",
-      "file": "verbose",
-      "sentry": "silent",
-      "loggly": "debug"
-    },
-    "domain": "pager"
+  "levels": {
+    "console": "info",
+    "file": "verbose",
+    "sentry": "silent",
+    "loggly": "debug"
   }
 }

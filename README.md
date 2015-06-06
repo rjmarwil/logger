@@ -46,6 +46,23 @@ logger.log('info', 'Hola Mundo', {hola: 'mundo'});
 
 Some of the bundled transports require some additional configuration on your app.
 
+We use [node-config](https://github.com/lorenwest/node-config), in order to configure your logs install it and add the log element
+
+### Configurations
+
+For now the only possible configuration is the log levels for the bundled transport, Expect more configurations here
+
+*Example Configuration*
+```
+{
+  "log":{
+    "levels":{
+      "console":"debug"
+    }
+  }
+}
+```
+
 ### Sentry
 
 The Sentry/Raven transport requires the following ENV var to be set:

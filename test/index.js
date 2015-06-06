@@ -4,10 +4,19 @@ var fs = require('fs')
 var localFileTransport = require('winston').transports.File
 var expect = require('chai').expect
 
+var config = require('config')
+
 describe('Logger Require', function () {
 
   it('should export properly', function (done) {
     expect(logger).to.be.an('object')
+    done()
+  })
+
+  it('should have the proper default configs', function (done) {
+    expect(config.get('log')).to.be.an('object')
+    expect(config.get('log').levels).to.be.an('object')
+    expect(config.get('log').levels.console).to.equal('silent')
     done()
   })
 
