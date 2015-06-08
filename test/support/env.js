@@ -3,3 +3,4 @@
  * @type {String}
  */
 process.env.NODE_ENV = 'test'
+process.env.LOGGLY_TOKEN = 'test'
