@@ -1,8 +1,8 @@
 {
   "levels": {
     "console": "info",
-    "file": "verbose",
-    "sentry": "silent",
-    "loggly": "debug"
+    "file": "debug",
+    "sentry": "error",
+    "loggly": "info"
   }
 }
