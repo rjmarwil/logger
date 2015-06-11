@@ -1,8 +1,0 @@
-{
-  "levels": {
-    "console": "info",
-    "file": "debug",
-    "sentry": "error",
-    "loggly": "info"
-  }
-}
