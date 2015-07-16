@@ -8,4 +8,4 @@ dependencies:
 
 test:
   post:
-    - codeclimate < coverage/lcov.info
+    - codeclimate-test-reporter < coverage/lcov.info

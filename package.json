@@ -11,14 +11,14 @@
     "url": "https://github.com/pagerinc/logger"
   },
   "scripts": {
-    "test": "make test-cov"
+    "test": "make lint"
   },
   "dependencies": {
     "bunyan": "^1.4.0",
     "bunyan-loggly": "0.0.5",
     "bunyan-raven": "^0.2.2",
     "config": "^1.13.0",
-    "raven": "^0.7.3"
+    "raven": "^0.8.1"
   },
   "devDependencies": {
     "chai": "^3.0.0",
