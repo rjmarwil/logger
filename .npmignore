@@ -2,3 +2,8 @@ support
 test
 examples
 *.sock
+.eslintrc
+README.md
+.editorconfig
+circle.yml
+Makefile
