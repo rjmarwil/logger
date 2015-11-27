@@ -1,0 +1,7 @@
+{
+  "extends": "standard",
+  "globals": {
+    "describe": 1,
+    "it": 1
+  }
+}

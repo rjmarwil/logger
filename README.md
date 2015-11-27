@@ -1,59 +1,48 @@
 # logger
 [![Circle CI](https://circleci.com/gh/pagerinc/logger.svg?style=svg&circle-token=5d187ad739918f3029e28534e5bf046ece8120ae)](https://circleci.com/gh/pagerinc/logger) [![Code Climate](https://codeclimate.com/repos/556dcfce6956802d790056d6/badges/ab64b16efb1ac1481125/gpa.svg)](https://codeclimate.com/repos/556dcfce6956802d790056d6/feed) [![Test Coverage](https://codeclimate.com/repos/556dcfce6956802d790056d6/badges/ab64b16efb1ac1481125/coverage.svg)](https://codeclimate.com/repos/556dcfce6956802d790056d6/coverage) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
-Logging library for new (and old) projects
+Logging library for your verbose projects.
 
-## Usage
 
-Each `NODE_ENV` defaults to a `console` and `file` transports. Under `production` and `stagging`, `localfile` 
-is replaced by `loggly` transport. See [configuration](#Configuration) for the extra setup under those enviroments.
+## Basic usage
+
+Works basically as a wrapper for Bunyan's console and [`console`] and [`raven`] transports. For more details on how to work with Bunyan, take a look at [its documentation](https://github.com/trentm/node-bunyan) or see [configuration](#Configuration) below for the setup details.
+
 
 ## Installation
 
-1. Upgrade npm
+This is a `private` npmE package, so in order to use it, make sure you have something that resembles the following `.npmrc` on your project's folder:
 
 ```
-  sudo npm install npm -g
+@pager:registry=http://npme.techcareinc.com:8080/
+//npme.techcareinc.com:8080/:_authToken=${NPM_TOKEN}
 ```
 
-2. Add Pager Registry
+Note that this requires the `NPM_TOKEN` env var to be exported as a [GitHub Personal Access Token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
 
-```
-  npm login --registry="http://npme.techcareinc.com:8080" --scope="@pager"
-```
 
-Fill your github credentials and public email
-
-3. Install the package
-
-```
-  npm install @pager/logger --save
-```
-
-4. Require the package
+## Usage
 
 ```javascript
-var logger = require('logger');
+'use strict'
+
+const logger = require('@pager/logger');
+logger.log('Hello, World', 'Everyone knows', { foo: 'the dice are loaded' });
 ```
 
-5. Use the package
+*PROTIP*: When running your app, remember you can get pretty output by [simply piping it to `bunyan`](https://github.com/trentm/node-bunyan#cli-usage) :godmode: .
 
-```javascript
-logger.log('info', 'Hola Mundo', {hola: 'mundo'});
-```
+For detailed usage examples, take a look at the [`examples`](https://github.com/pagerinc/logger/tree/master/examples) folder.
+
 
 ## Configuration
 
-Some of the bundled transports require some additional configuration on your app.
+Most of the bundled transports can be configured on your app by simply declaring a `log` key on your [config settings](https://github.com/lorenwest/node-config).
 
-We use [node-config](https://github.com/lorenwest/node-config), in order to configure your logs install it and add the log element
 
-### Configurations
+### Sample configuration
 
-For now the only possible configuration is the log levels for the bundled transport, Expect more configurations here
-
-*Example Configuration*
-```
+```javascript
 {
   "log":{
     "levels":{
@@ -63,36 +52,27 @@ For now the only possible configuration is the log levels for the bundled transp
 }
 ```
 
+If you keep getting a `No configurations found in configuration directory` WARN, try disabling the alerts by setting the `SUPRESS_NO_CONFIG_WARNING` env var to a truthy value.
+
+
 ### Sentry
 
-The Sentry/Raven transport requires the following ENV var to be set:
+In order to enable the Sentry/Raven [transport](https://github.com/chakrit/bunyan-raven), the `SENTRY_DSN` env var needs to be set.
 
-- `SENTRY_DSN`
-
-### Loggly
-
-- `LOGGLY_TOKEN`
-- `LOGGLY_DOMAIN`
-
-### S3
-
-The S3 transport requires the following ENV vars to be set on the host:
-
-- `S3_LOGS_BUCKET` - name of your bucket
-- `S3_KEY`
-- `S3_SECRET`
 
 ## Custom transports
 
-To add a custom transport:
+You can extend the default functionality of this module by adding your own transports:
 
 ```javascript
+'use strict'
+
 // Require the transport
-var localFileTransport = require('winston').transports.File;
+const localFileTransport = require('winston').transports.File;
 
 // Require the logger
-var logger = require('logger');
+const logger = require('@pager/logger');
 
-// Add and setupt the transport
+// Add and setup the transport
 logger.add(localFileTransport, { name: 'localFile', filename: 'test.log' });
 ```
