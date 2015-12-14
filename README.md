@@ -45,6 +45,7 @@ Most of the bundled transports can be configured on your app by simply declaring
 ```javascript
 {
   "log":{
+    "patchGlobal": true,
     "levels":{
       "console":"debug"
     }
