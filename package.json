@@ -22,16 +22,16 @@
     "bunyan": "1.x.x",
     "bunyan-raven": "0.4.x",
     "config": "1.x.x",
-    "raven": "0.10.x"
+    "raven": "0.12.x"
   },
   "devDependencies": {
     "chai": "3.x.x",
-    "eslint": "2.x.x",
-    "eslint-config-standard": "5.x.x",
-    "eslint-plugin-promise": "1.x.x",
-    "eslint-plugin-standard": "1.x.x",
+    "eslint": "3.x.x",
+    "eslint-config-standard": "6.x.x",
+    "eslint-plugin-promise": "3.x.x",
+    "eslint-plugin-standard": "2.x.x",
     "istanbul": "0.4.x",
-    "mocha": "2.x.x"
+    "mocha": "3.x.x"
   },
   "main": "lib/logger.js"
 }

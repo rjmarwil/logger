@@ -1,12 +1,10 @@
 machine:
   node:
-    version: 4.2
-
+    version: 6
 dependencies:
   pre:
-    - npm install -g codeclimate-test-reporter
-    - npm install -g nsp
-
+    - npm install --global codeclimate-test-reporter
+    - npm install --global nsp
 test:
   pre:
     - nsp check
