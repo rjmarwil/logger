@@ -22,7 +22,7 @@
     "bunyan": "1.x.x",
     "bunyan-raven": "0.4.x",
     "config": "1.x.x",
-    "raven": "0.12.x"
+    "raven": "1.x.x"
   },
   "devDependencies": {
     "chai": "3.x.x",
