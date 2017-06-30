@@ -8,29 +8,14 @@ Logging library for your verbose projects.
 
 Works basically as a wrapper for Bunyan's console and [`console`] and [`raven`] transports. For more details on how to work with Bunyan, take a look at [its documentation](https://github.com/trentm/node-bunyan) or see [configuration](#Configuration) below for the setup details.
 
-
-## Installation
-
-This is a `private` npmE package, so in order to use it, make sure you have something that resembles the following `.npmrc` on your project's folder:
-
-```
-@pager:registry=http://npme.techcareinc.com:8080/
-//npme.techcareinc.com:8080/:_authToken=${NPM_TOKEN}
-```
-
-Note that this requires the `NPM_TOKEN` env var to be exported as a [GitHub Personal Access Token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
-
-
-## Usage
-
 ```javascript
-'use strict'
+'use strict';
 
 const logger = require('@pager/logger');
-logger.log('Hello, World', 'Everyone knows', { foo: 'the dice are loaded' });
+logger.info({ foo: 'bar' }, 'Everyone knows %s', 'the dice are loaded');
 ```
 
-*PROTIP*: When running your app, remember you can get pretty output by [simply piping it to `bunyan`](https://github.com/trentm/node-bunyan#cli-usage) :godmode: .
+> *PROTIP*: When running your app, remember you can get pretty output by [simply piping it to `bunyan`](https://github.com/trentm/node-bunyan#cli-usage) :godmode: .
 
 For detailed usage examples, take a look at the [`examples`](https://github.com/pagerinc/logger/tree/master/examples) folder.
 
@@ -53,12 +38,22 @@ Most of the bundled transports can be configured on your app by simply declaring
 }
 ```
 
-If you keep getting a `No configurations found in configuration directory` WARN, try disabling the alerts by setting the `SUPRESS_NO_CONFIG_WARNING` env var to a truthy value.
-
 
 ### Sentry
 
 In order to enable the Sentry/Raven [transport](https://github.com/chakrit/bunyan-raven), the `SENTRY_DSN` env var needs to be set.
+
+
+## Installation
+
+This is a _private_ npm package, so make sure you have something that resembles the following `.npmrc` on your project's folder:
+
+```
+@pager:registry=http://npme.techcareinc.com:8080/
+//npme.techcareinc.com:8080/:_authToken=${NPM_TOKEN}
+```
+
+Note that this requires the `NPM_TOKEN` env var to be exported as a [GitHub Personal Access Token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
 
 
 ## Custom transports

@@ -20,16 +20,18 @@
   },
   "dependencies": {
     "bunyan": "1.x.x",
-    "bunyan-raven": "0.4.x",
+    "bunyan-raven": "0.5.0",
     "config": "1.x.x",
-    "raven": "1.x.x"
+    "raven": "2.x.x"
   },
   "devDependencies": {
-    "chai": "3.x.x",
-    "eslint": "3.x.x",
-    "eslint-config-standard": "6.x.x",
+    "chai": "4.x.x",
+    "eslint": "4.x.x",
+    "eslint-config-standard": "10.x.x",
+    "eslint-plugin-import": "2.x.x",
+    "eslint-plugin-node": "5.x.x",
     "eslint-plugin-promise": "3.x.x",
-    "eslint-plugin-standard": "2.x.x",
+    "eslint-plugin-standard": "3.x.x",
     "istanbul": "0.4.x",
     "mocha": "3.x.x"
   },
