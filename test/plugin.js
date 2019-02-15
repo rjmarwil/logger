@@ -151,6 +151,6 @@ describe('Plugin', () => {
 
         const server = new Hapi.Server();
         await server.register(Plugin);
-        server.log('stdout log');
+        server.log(['info'], 'stdout log');
     });
 });
