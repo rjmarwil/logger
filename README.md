@@ -33,7 +33,8 @@ Additional non-standard object keys to redact from logs in addition to defaults:
       "version": "v1.0.2" // adds `version: 'v1.0.2'` to every log
     }
   },
-  "instance": customPinoInstance, // optionally, an already configured pino instance
+  "instance": customPinoInstance, // optionally, an already configured pino instance,
+  "exposeErrors": true
 }
 ```
 
@@ -42,6 +43,10 @@ Pino configuration object per [Pino's documentation](https://github.com/pinojs/p
 
 #### instance (pino object)
 Already configured pino object
+
+#### exposeErrors (boolean)
+Return error and stacktrace along with `500` response as a payload. Useful in non-production environments.
+_Default: false_
 
 ## Installation
 
