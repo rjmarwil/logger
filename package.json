@@ -1,6 +1,6 @@
 {
   "name": "@pager/logger",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Logging library",
   "keywords": [
     "logs"
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "lab -La code -t 100 -v",
-     "test-cov-xml": "lab -La code -t 100 -r junit -o coverage.xml"
+    "test-cov-xml": "lab -La code -t 100 -r junit -o coverage.xml"
   },
   "dependencies": {
     "hapi-pino": "5.x.x",
