@@ -37,20 +37,21 @@ describe('Logger', () => {
     it('should redact default fields with custom logger', () => {
 
         const logger = Logger.createLogger({}, internals.destinationStream);
-        logger.info({ password: 'my secret', other: 'asdf' }, 'a message');
+        logger.info({ password: 'my secret', other: 'asdf', headers: { authorization: 'what' } }, 'a message');
         expect(internals.queue).to.have.length(1);
         expect(internals.queue[0].password).to.equal('[Redacted]');
         expect(internals.queue[0].other).to.equal('asdf');
         expect(internals.queue[0].data).to.equal('a message');
+        expect(internals.queue[0].headers.authorization).to.equal('[Redacted]');
     });
 
     it('should redact configured fields', () => {
 
-        const logger = Logger.createLogger({ noir: ['some-secret'] }, internals.destinationStream);
-        logger.info({ password: 'my secret', other: 'asdf', 'some-secret': '12345' });
+        const logger = Logger.createLogger({ redact: ['someSecret'] }, internals.destinationStream);
+        logger.info({ password: 'my secret', other: 'asdf', 'someSecret': '12345' });
         expect(internals.queue).to.have.length(1);
         expect(internals.queue[0].password).to.equal('[Redacted]');
-        expect(internals.queue[0]['some-secret']).to.equal('[Redacted]');
+        expect(internals.queue[0].someSecret).to.equal('[Redacted]');
         expect(internals.queue[0].other).to.equal('asdf');
     });
 });

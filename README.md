@@ -8,6 +8,9 @@ Logging library for your verbose projects.
 
 Works as both a service worker logger or a Hapi plugin - both of which use standardized formatting and redaction configuration. For more details on how to work with Pino, take a look at [its documentation](https://github.com/pinojs/pino) or see [configuration](#Configuration) below for the setup details.
 
+### Redacting
+
+This library has been set up with an array of standard redactions based on current usage. Each app should explicitly append and detail all potential leaks. There are no defaults because there are associated performance issues with wildcards, particularly intermediate wildcards. Please do your part in log security to ensure no PHI or secrets are leaked into the logs.
 
 ### Configuration
 
