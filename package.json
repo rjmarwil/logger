@@ -18,8 +18,10 @@
     "test-cov-xml": "lab -La code -t 100 -r junit -o coverage.xml"
   },
   "dependencies": {
+    "@sentry/node": "^4.6.3",
     "hapi-pino": "5.x.x",
-    "hoek": "6.x.x"
+    "hoek": "6.x.x",
+    "pino-multi-stream": "^4.0.2"
   },
   "devDependencies": {
     "code": "5.x.x",
