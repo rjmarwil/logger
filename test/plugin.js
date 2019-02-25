@@ -30,13 +30,14 @@ describe('Plugin', () => {
                 next();
             }
         });
-        const instance = Logger.createLogger({}, internals.destinationStream);
+        const instance = Logger.createLogger({ prettyPrint: false }, internals.destinationStream);
         await server.register({
             plugin: Plugin,
             options: {
                 instance,
                 pino: {
-                    ignorePaths: ['/stanky-leg']
+                    ignorePaths: ['/stanky-leg'],
+                    prettyPrint: false
                 }
             }
         });
@@ -148,7 +149,10 @@ describe('Plugin', () => {
     it('should use default logger if none supplied without error', async () => {
 
         const server = new Hapi.Server();
-        await server.register(Plugin);
+        await server.register({
+            plugin: Plugin,
+            options: { pino: { prettyPrint: false } }
+        });
         server.log(['info'], 'stdout log');
         server.log(['info'], { test: 'my test object' });
     });
@@ -170,7 +174,7 @@ describe('Plugin', () => {
             plugin: Plugin,
             options: {
                 exposeErrors: true,
-                instance: Logger.createLogger({}, new Stream.Writable({
+                instance: Logger.createLogger({ prettyPrint: false }, new Stream.Writable({
                     write: (chunk, encoding, next) => {
 
                         queue.push(JSON.parse(chunk.toString()));
@@ -214,7 +218,7 @@ describe('Plugin', () => {
             plugin: Plugin,
             options: {
                 exposeErrors: true,
-                instance: Logger.createLogger({}, new Stream.Writable({
+                instance: Logger.createLogger({ prettyPrint: false }, new Stream.Writable({
                     write: (chunk, encoding, next) => {
 
                         queue.push(JSON.parse(chunk.toString()));

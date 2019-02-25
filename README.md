@@ -10,7 +10,7 @@ Works as both a service worker logger or a Hapi plugin - both of which use stand
 
 ### Redacting
 
-This library has been set up with an array of standard redactions based on current usage. Each app should explicitly append and detail all potential leaks. There are no defaults because there are associated performance issues with wildcards, particularly intermediate wildcards. Please do your part in log security to ensure no PHI or secrets are leaked into the logs.
+This library has been set up with an array of standard redactions based on current usage. Each app should explicitly append and detail all potential leaks. There are no wildcard defaults because there are associated performance issues with wildcards, particularly intermediate wildcards. Please do your part in log security to ensure no PHI or secrets are leaked into the logs.
 
 ### Configuration
 
@@ -18,15 +18,12 @@ This library has been set up with an array of standard redactions based on curre
 ```javascript
 {
   "level": "warn", // any pino default option overrides
-  "noir": ['redacted-key']
+  "redact": ['redactKey']
 }
 ```
 
 #### pino options
-Pino default overrides per [Pino's documentation](https://github.com/pinojs/pino/blob/master/docs/api.md#options-object)
-
-#### noir (Array)
-Additional non-standard object keys to redact from logs in addition to defaults: `['password', 'token', 'authorization', 'Authorization', 'encryptedPassword', 'bearerToken', 'client_id', 'client_secret', 'refreshcode']`
+Pino default overrides per [Pino's documentation](https://github.com/pinojs/pino/blob/master/docs/api.md#options-object).
 
 *Hapi*
 ```javascript
@@ -55,8 +52,8 @@ _Default: false_
 
 *Non-Hapi*
 ```javascript
-// import default logger
-const { default: Logger } = require('@pagerinc/logger');
+// importing default logger is best practice for most cases
+const { default: Logger } = require('@pager/logger/lib/logger');
 
 Logger.info('Worker log');
 
@@ -84,5 +81,5 @@ const server = new Hapi.Server();
 await server.register(PinoPlugin);
 
 server.log(['info'], { request: 'please log', response: 'hapi logging ^_^' });
-// result: `{"level":30,"time":1550778694025,"pid":74042,"hostname":"securitys-MacBook-Pro.local","tags":["info"],"data":{"request":"please log","response": "hapi logging ^_^"},"v":1}`
+// result: `{"level":30,"time":1550778694025,"pid":74042,"hostname":"securitys-MacBook-Pro.local","tags":["info"],"data":{"request":"please log","response":"hapi logging ^_^"},"v":1}`
 ```
