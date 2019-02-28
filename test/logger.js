@@ -79,6 +79,52 @@ describe('Logger', () => {
         expect(() => JSON.parse(internals.queue[0])).to.throw(); // pretty print is not json
     });
 
+    describe('Sentry', () => {
+
+        beforeEach(() => {
+
+            internals.sentryQueue = [];
+            internals.sentryStream = {
+                captureEvent: (event) => {
+
+                    internals.sentryQueue.push(event);
+                }
+            };
+        });
+
+        afterEach(() => {
+
+            delete internals.sentryQueue;
+            delete internals.sentryStream;
+        });
+
+        it('should not trigger sentry on info', () => {
+
+            const logger = Logger.createLogger({ prettyPrint: false, sentry: internals.sentryStream });
+            logger.info('a non error log');
+            expect(internals.sentryQueue).to.have.length(0);
+        });
+
+        it('should trigger sentry on error', () => {
+
+            const logger = Logger.createLogger({ prettyPrint: false, sentry: internals.sentryStream });
+            logger.error(new Error('test error'));
+            expect(internals.sentryQueue).to.have.length(1);
+        });
+
+        it('should not crash on sentry log failures', () => {
+
+            const sentry = {
+                captureEvent: () => {
+
+                    throw new Error('sentry issue');
+                }
+            };
+            const logger = Logger.createLogger({ prettyPrint: false, sentry });
+            logger.error(new Error('test error')); // if this passes, we captured the error correctly
+        });
+    });
+
     describe('env var testing', () => {
 
         beforeEach(() => {

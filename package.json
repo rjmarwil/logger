@@ -14,14 +14,15 @@
     "node": ">=10"
   },
   "scripts": {
-    "test": "lab -La code -t 100 -v",
+    "test": "lab -lLa code -t 100 -v",
     "test-cov-xml": "lab -La code -t 100 -r junit -o coverage.xml"
   },
   "dependencies": {
-    "@sentry/node": "^4.6.3",
+    "@sentry/node": "4.x.x",
     "hapi-pino": "5.x.x",
     "hoek": "6.x.x",
-    "pino-multi-stream": "^4.0.2"
+    "pino": "5.x.x",
+    "pino-multi-stream": "4.x.x"
   },
   "devDependencies": {
     "code": "5.x.x",
