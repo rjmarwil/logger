@@ -12,6 +12,17 @@ Works as both a service worker logger or a Hapi plugin - both of which use stand
 
 This library has been set up with an array of standard redactions based on current usage. Each app should explicitly append and detail all potential leaks. There are no wildcard defaults because there are associated performance issues with wildcards, particularly intermediate wildcards. Please do your part in log security to ensure no PHI or secrets are leaked into the logs.
 
+## Pretty-print
+
+Pretty print is auto-set to true when `NODE_ENV` is not `production` - which excludes any hosted pager environment which sets that to default. So any local development or test logs will include pretty-print auto-configured. To manually turn this off for any reason, set prettyPrint in pino options below according to the [prettyPrint docs](https://service.us2.sumologic.com/ui/#/search/TKLEGtyjj7TNZS7ZVIJGNFRER6VFdTUVT9ksS6G5).
+
+Example:
+```javascript
+const { logger: Logger } = require('@pager/logger');
+const MyCustomPrettyPrintLogger = logger.createLogger({ prettyPrint: { colorize: false } });
+MyCustomPrettyPrintLogger.info('pretty print me please');
+```
+
 ### Configuration
 
 *Non-hapi*:
