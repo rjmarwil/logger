@@ -2,7 +2,8 @@
 
 // Load modules
 
-const { logger: Logger, plugin: Plugin } = require('../lib');
+const Plugin = require('../lib/plugin');
+const Logger = require('../lib/logger');
 const Code = require('code');
 const Hapi = require('hapi');
 const Lab = require('lab');

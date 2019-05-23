@@ -1,8 +1,10 @@
-# logger
+# @pager/logger
 [![Circle CI](https://circleci.com/gh/pagerinc/logger.svg?style=svg&circle-token=5d187ad739918f3029e28534e5bf046ece8120ae)](https://circleci.com/gh/pagerinc/logger)
 
-Logging library for your verbose projects.
-
+Structured logging for your verbose projects.
+- Pino
+- Hapi Plugin
+- Global default
 
 ## Basic usage
 
@@ -10,18 +12,11 @@ Works as both a service worker logger or a Hapi plugin - both of which use stand
 
 ### Redacting
 
-This library has been set up with an array of standard redactions based on current usage. Each app should explicitly append and detail all potential leaks. There are no wildcard defaults because there are associated performance issues with wildcards, particularly intermediate wildcards. Please do your part in log security to ensure no PHI or secrets are leaked into the logs.
+This library has been set up with an array of standard redactions based on current usage. Each app should explicitly append and detail all potential leaks. There are no wildcard defaults because there are large associated performance issues with wildcards, particularly intermediate wildcards. Please do your part in log security to ensure no PHI or secrets are leaked into the logs; defaults provided in the code are append only.
 
 ## Pretty-print
 
-Pretty print is auto-set to true when `NODE_ENV` is not `production` - which excludes any hosted pager environment which sets that to default. So any local development or test logs will include pretty-print auto-configured. To manually turn this off for any reason, set prettyPrint in pino options below according to the [prettyPrint docs](https://service.us2.sumologic.com/ui/#/search/TKLEGtyjj7TNZS7ZVIJGNFRER6VFdTUVT9ksS6G5).
-
-Example:
-```javascript
-const { logger: Logger } = require('@pager/logger');
-const MyCustomPrettyPrintLogger = logger.createLogger({ prettyPrint: { colorize: false } });
-MyCustomPrettyPrintLogger.info('pretty print me please');
-```
+Pretty print is auto-set to true when `NODE_ENV` is not `production` - which excludes any hosted pager environment which sets that to default. So any local development or test logs will include pretty-print auto-configured. To manually turn this off for any reason, set prettyPrint in pino options below according to the [prettyPrint docs](https://github.com/pinojs/pino-pretty#pino-pretty).
 
 ### Configuration
 
@@ -61,10 +56,37 @@ _Default: false_
 
 ## Installation and Usage
 
+*Hapi*
+
+For 90% of projects, there will be no configuration needed, the plugin will do all the heavy lifting, and you can use the existing hapi `server.log` and `request.log` that you know and love.
+```javascript
+const Hapi = require('hapi');
+const LogPlugin = require('@pagerinc/logger/plugin');
+
+const server = new Hapi.Server();
+await server.register(LogPlugin);
+
+server.log(['info'], { request: 'please log', response: 'hapi logging ^_^' });
+// {
+//    "level": 30,
+//    "time": 1550778694025,
+//    "pid": 74042,
+//    "hostname": "securitys-MacBook-Pro.local",
+//    "tags": [
+//        "info"
+//    ],
+//    "data": {
+//        "request": "please log",
+//        "response": "hapi logging ^_^"
+//    },
+//    "v": 1
+// }
+```
+
 *Non-Hapi*
 ```javascript
 // importing default logger is best practice for most cases
-const { default: Logger } = require('@pager/logger/lib/logger');
+const Logger = require('@pager/logger');
 
 Logger.info('Worker log');
 
@@ -75,22 +97,11 @@ try {
 catch (err) {
     Logger.error(err);
 }
-
-process.on('unhandledRejection', (err) => {
-
-    Logger.error(err);
-});
-
 ```
 
-*Hapi*
+*Custom*
 ```javascript
-const Hapi = require('hapi');
-const { plugin: PinoPlugin } = require('@pagerinc/logger');
-
-const server = new Hapi.Server();
-await server.register(PinoPlugin);
-
-server.log(['info'], { request: 'please log', response: 'hapi logging ^_^' });
-// result: `{"level":30,"time":1550778694025,"pid":74042,"hostname":"securitys-MacBook-Pro.local","tags":["info"],"data":{"request":"please log","response":"hapi logging ^_^"},"v":1}`
+const Logger = require('@pager/logger');
+const MyCustomPrettyPrintLogger = Logger.createLogger({ prettyPrint: { colorize: false } });
+MyCustomPrettyPrintLogger.info('pretty print me please');
 ```
