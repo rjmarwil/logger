@@ -2,7 +2,7 @@
 
 // Load modules
 
-const { logger: Logger } = require('../lib');
+const Logger = require('../lib/logger');
 const Code = require('code');
 const Lab = require('lab');
 const Stream = require('stream');
