@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@sentry/node": "5.x.x",
-    "hapi-pino": "^6.0.1",
+    "hapi-pino": "6.x.x",
     "hoek": "6.x.x",
     "pino": "5.x.x",
     "pino-multi-stream": "4.x.x"
