@@ -1,0 +1,41 @@
+{
+  "name": "@pager/logger",
+  "version": "5.1.1",
+  "description": "Logging library",
+  "keywords": [
+    "logs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pagerinc/logger"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "test": "lab",
+    "test-cov-xml": "lab -r junit -o coverage.xml"
+  },
+  "dependencies": {
+    "@hapi/hoek": "7.x.x",
+    "@hapi/joi": "15.x.x",
+    "@sentry/node": "5.x.x",
+    "hapi-pino": "6.x.x",
+    "pino": "5.x.x",
+    "pino-multi-stream": "4.x.x"
+  },
+  "devDependencies": {
+    "@hapi/code": "5.x.x",
+    "@hapi/eslint-config-hapi": "12.x.x",
+    "@hapi/eslint-plugin-hapi": "4.x.x",
+    "@hapi/hapi": "18.x.x",
+    "@hapi/lab": "18.x.x"
+  },
+  "main": "lib/index.js",
+  "renovate": {
+    "extends": [
+      "github>pagerinc/renovate-config"
+    ]
+  }
+}
