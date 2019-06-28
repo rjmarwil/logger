@@ -19,15 +19,16 @@ describe('reqSerializer', () => {
     before(() => {
 
         internals.req = {
-            app: 'api-core',
-            path: '/logout',
-            route: '/logout',
-            httpVersion: '1.1',
-            responseTime: 100,
-            instance: 'http://dev-api-core-57877965c5-sfvzc:3000',
-            source: {
-                remoteAddress: '10.4.2.133',
-                userAgent: 'ExampleInternal/1.9.0.internal-3 (iPhone; iOS 12.2; Scale/2.00)'
+            raw:{
+                app: 'api-core',
+                path: '/logout',
+                route: '/logout',
+                httpVersion: '1.1',
+                instance: 'http://dev-api-core-57877965c5-sfvzc:3000',
+                source: {
+                    remoteAddress: '10.4.2.133',
+                    userAgent: 'ExampleInternal/1.9.0.internal-3 (iPhone; iOS 12.2; Scale/2.00)'
+                }
             }
         };
     });
